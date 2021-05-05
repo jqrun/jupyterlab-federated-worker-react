@@ -1,12 +1,32 @@
 # myextension
 
-![Github Actions Status](https://github.com/my_name/myextension/workflows/Build/badge.svg)
+Reproducer extension for an issue with workers using react in a prebuild extension.
 
-A JupyterLab extension for rendering text_plain files.
+To repro, install the extension, spin up lab, open a python notebook, and render a simple cell like:
+
+```python
+[1,2,3]
+```
+
+The error:
+
+```
+consumes:19 Uncaught (in promise) Error: Shared module react doesn't exist in shared scope default
+    at ensureExistence (consumes:19)
+    at consumes:93
+    at consumes:78
+    at Object.webpack/sharing/consume/default/react (consumes:122)
+    at Object.__webpack_require__.m.<computed> [as webpack/sharing/consume/default/react] (consumes:130)
+    at __webpack_require__ (bootstrap:19)
+    at Object../lib/worker.js (lib_worker_js.cec92441c3301ea9a8a7.js:12)
+    at __webpack_require__ (bootstrap:19)
+    at bootstrap:34
+    at Function.__webpack_require__.O (chunk loaded:23)
+```
 
 ## Requirements
 
-* JupyterLab >= 3.0
+- JupyterLab >= 3.0
 
 ## Install
 
